@@ -1,0 +1,5 @@
+
+Gather success 2019-11-25 21:00:02.362011:
+Product Name: Samsung Galaxy A70
+Current Price: CDN$ 474.96
+Percent Off: -4.58

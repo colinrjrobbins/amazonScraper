@@ -1,0 +1,63 @@
+# generalized imports
+import datetime as dt
+import time
+
+# imports for web parsing
+from bs4 import BeautifulSoup
+import requests
+
+# FUNCTIONS
+def timeCheck():
+    while True:
+        # gathering the current time to check every 6 hours.
+        timehold = str(dt.datetime.now())
+        currentTime = timehold[11:19]
+        if currentTime == "00:00:00" or currentTime == "06:00:00" or currentTime == "12:00:00" or currentTime == "18:00:00":
+            return 1
+
+# URL used for the amazon product
+URL = 'https://www.amazon.ca/Samsung-A70-Infinity-U-Smartphone-International/dp/B07RS512XL/ref=sxin_2_ac_d_rm?aURL = 'https://www.amazon.ca/Samsung-A70-Infinity-U-Smartphone-International/dp/B07RS512XL/ref=sxin_2_ac_d_rm?ac_md=0-0-c2Ftc3VuZyBhNzA%3D-ac_d_rm&keywords=samsung+a70&pd_rd_i=B07RS512XL&pd_rd_r=fd1e6a1d-3c44-42df-864e-8b450eca87f3&pd_rd_w=Megde&pd_rd_wg=Edfyn&pf_rd_p=3447f81e-a090-4eb4-ba4b-d37cf5a8c179&pf_rd_r=1A4JADYR1VBTQM1Z3BVY&psc=1&qid=1572396814'
+# used to avoid cookie data and to verify your a human being
+header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0'}
+
+# Generalized holding variables
+comparePrice = 453.19
+
+while True:
+    
+hold = timeCheck()
+    # gather the amazon page as HTML code with a GET protocol
+    page = requests.get(URL,headers=header)
+
+    # check to make sure it is successfully connected
+    status = page.status_code
+
+    # check to make sure it was a success or display an error.
+    if status == 200:
+        # decode the page and prepare it for reading
+        page_decode = page.content.decode('utf-8')
+        # using lxml instead of html parser
+        soup = BeautifulSoup(page_decode, "lxml")
+        # finding the product title
+        title = soup.find(id="productTitle").get_text().strip().split()
+        # formatting the title for the first few words to get the idea
+        titleFinal = " ".join(title[0:3])
+        # finding the price of the product
+        price = soup.find(id="priceblock_ourprice").get_text()
+        # printing the name and the price.
+        floatPrice = float(price[5:11])    
+        # calculating the price difference
+        percentDown = ((comparePrice / floatPrice) - 1) * 100
+        # format the percent so it tells you the difference
+        formattedPercent = float("%.2f" % round(percentDown,2))
+        # if the gathered value is less then the last value check and send text
+        if formattedPercent >= 10.00:
+            r = requests.post('https://maker.ifttt.com/trigger/price_change/with/key/mFJcPs0GfZCjSl6uFLKED3PYPvbt3zrJ6zRgrDR9ZvS', 
+                            params={
+                                "value1":titleFinal,
+                                "value2":price,
+                                "value3":str(formattedPercent)})
+        comparePrice = floatPrice
+        print("working")
+    else:
+        print("Error connecting to Amazon.")
