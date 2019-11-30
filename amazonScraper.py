@@ -33,9 +33,8 @@ header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Geck
 # Generalized holding variables
 comparePrice = 453.19
 
-logFile = open("logFile.txt","w")
-
 while True:
+    logFile = open("logFile.txt","w")
     hold = timeCheck()
     # gather the amazon page as HTML code with a GET protocol
     page = requests.get(URL,headers=header)
