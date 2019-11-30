@@ -16,6 +16,7 @@ import requests
 
 # FUNCTIONS
 def timeCheck():
+    print("Waiting...")
     while True:
         # gathering the current time to check every 6 hours.
         timehold = str(dt.datetime.now())
