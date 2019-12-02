@@ -18,13 +18,8 @@ import requests
 def timeCheck():
     print("Waiting...")
     while True:
-        # gathering the current time to check every 6 hours.
-        timehold = str(dt.datetime.now())
-        currentTime = timehold[11:19]
-        if currentTime == "00:00:00" or currentTime == "03:00:00" or currentTime == "06:00:00" or currentTime == "09:00:00" or currentTime == "12:00:00" or currentTime == "15:00:00" or currentTime == "18:00:00" or currentTime == "21:00:00":            
-            return 1
-        else:
-            continue
+        # hold for 15 minutes.
+        time.sleep(900)
 
 # URL used for the amazon product
 URL = 'https://www.amazon.ca/gp/product/B07RS512XL?pf_rd_p=46535598-d2e0-4bc4-8392-182d8c1e93fc&pf_rd_r=YDTVGVF57RWYKZKQDVNA'
@@ -36,7 +31,7 @@ comparePrice = 453.19
 
 while True:
     logFile = open("logFile.txt","w")
-    hold = timeCheck()
+    timeCheck()
     # gather the amazon page as HTML code with a GET protocol
     page = requests.get(URL,headers=header)
 
