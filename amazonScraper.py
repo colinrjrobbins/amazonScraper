@@ -17,9 +17,7 @@ import requests
 # FUNCTIONS
 def timeCheck():
     print("Waiting...")
-    while True:
-        # hold for 15 minutes.
-        time.sleep(900)
+    time.sleep(900)
 
 # URL used for the amazon product
 URL = 'https://www.amazon.ca/gp/product/B07RS512XL?pf_rd_p=46535598-d2e0-4bc4-8392-182d8c1e93fc&pf_rd_r=YDTVGVF57RWYKZKQDVNA'
