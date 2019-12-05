@@ -97,6 +97,9 @@ while True:
     testCheck.currentTime()
     testCheck.pageGather()
     testCheck.informationGrab()
-    testCheck.checkData()
-    testCheck.saveToFile()
+    holdReturn = testCheck.checkData()
+    if holdReturn == 1:
+        testCheck.saveToFile()
+    else:
+        print("No change in price.")
     testCheck.timeCheck()

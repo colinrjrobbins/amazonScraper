@@ -66,11 +66,11 @@ class amazonScraper():
                                             "value2":self.price,
                                             "value3":str(self.formattedPercent)})
                 self.comparePrice = self.floatPrice
-                self.success = 1
+                return 1
             except Exception as e:
-                self.success = 0
                 print("\nError occured at {0}: {1}\n".format(str(self.current),str(e)))
                 self.errorLog.write("\n" + str(self.current) + ": " + str(e)+ "\n")
+                return 0
                 
     def saveToFile(self):
         if self.success == 1:
