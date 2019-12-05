@@ -19,6 +19,8 @@ class amazonScraper():
         self.URL = 'https://www.amazon.ca/gp/product/B07RS512XL?pf_rd_p=46535598-d2e0-4bc4-8392-182d8c1e93fc&pf_rd_r=YDTVGVF57RWYKZKQDVNA'
         self.header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0'}
         self.comparePrice = 453.19
+ 
+    def fileOpener(self):
         self.logFile = open("logFile.txt","w")
         self.errorLog = open("errorLog.txt","w")
         
@@ -76,11 +78,12 @@ class amazonScraper():
                                                                self.titleFinal,               # 1
                                                                str(self.price),               # 2
                                                                str(self.formattedPercent)))   # 3
-        print("\n{0}\n{1}\n{2}\n{3}\n".format(str(self.currentTime),             # 0
-                                                               self.titleFinal,               # 1
-                                                               str(self.price),               # 2
-                                                               str(self.formattedPercent)))   # 3)
+        print("\n{0}\n{1}\n{2}\n{3}\n".format(  str(self.current),             # 0
+                                                self.titleFinal,               # 1
+                                                str(self.price),               # 2
+                                                str(self.formattedPercent)))   # 3
         self.logFile.close()
+        self.errorLog.close()
         print("Copying log file to /home/pi/. folder...")
         os.system("sudo cp -rf /home/pi/Documents/amazonScraper/logFile.txt /home/pi/")
     
