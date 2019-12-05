@@ -94,9 +94,14 @@ from amazonScraperClass import amazonScraper as AmS
 testCheck = AmS()
 
 while True:
+    print("Grabbing current time...")
     testCheck.currentTime()
+    print("Gathering product information...")
     testCheck.pageGather()
+    print("Sparsing through data...")
     testCheck.informationGrab()
+    print("Checking Data...")
     testCheck.checkData()
+    print("Saving to file...")
     testCheck.saveToFile()
     testCheck.timeCheck()

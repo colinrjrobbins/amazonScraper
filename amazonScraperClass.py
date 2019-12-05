@@ -76,6 +76,11 @@ class amazonScraper():
                                                                self.titleFinal,               # 1
                                                                str(self.price),               # 2
                                                                str(self.formattedPercent)))   # 3
+        print("\n{0}\n{1}\n{2}\n{3}\n".format(str(self.currentTime),             # 0
+                                                               self.titleFinal,               # 1
+                                                               str(self.price),               # 2
+                                                               str(self.formattedPercent)))   # 3)
         self.logFile.close()
+        print("Copying log file to /home/pi/. folder...")
         os.system("sudo cp -rf /home/pi/Documents/amazonScraper/logFile.txt /home/pi/")
     
