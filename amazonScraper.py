@@ -96,6 +96,8 @@ testCheck = AmS()
 while True:
     print("Grabbing current time...")
     testCheck.currentTime()
+    print("Opening log files...")
+    testCheck.fileOpener()
     print("Gathering product information...")
     testCheck.pageGather()
     print("Sparsing through data...")
