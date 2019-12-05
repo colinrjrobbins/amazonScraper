@@ -91,5 +91,12 @@ from amazonScraperClass import amazonScraper as AmS
 #         print("Error connecting to Amazon.")
 #         logFile.write("\nInternet Error, Amazon Connection unavailable.\n")
 
+testCheck = AmS()
+
 while True:
-    testCheck = AmS()
+    testCheck.currentTime()
+    testCheck.pageGather()
+    testCheck.informationGrab()
+    testCheck.checkData()
+    testCheck.saveToFile()
+    testCheck.timeCheck()
