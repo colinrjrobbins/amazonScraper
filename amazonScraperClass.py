@@ -74,7 +74,7 @@ class amazonScraper():
                 
     def saveToFile(self):
         print("Gather Successful. Saved to log file.")
-        self.logFile.write("\n{0}\n{1}\n{2}\n{3}\n".format(str(self.currentTime),             # 0
+        self.logFile.write("\n{0}\n{1}\n{2}\n{3}\n".format(str(self.current),             # 0
                                                                self.titleFinal,               # 1
                                                                str(self.price),               # 2
                                                                str(self.formattedPercent)))   # 3
