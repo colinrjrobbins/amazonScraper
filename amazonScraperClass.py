@@ -72,7 +72,10 @@ class amazonScraper():
                 
     def saveToFile(self):
         print("Gather Successful. Saved to log file.")
-        self.logFile.write("\nGather success {0}:\nProduct Name: {1}\nCurrent Price: {2}\nPercent Off: {3}\n".format(str(currentTime),titleFinal,str(price),str(formattedPercent)))
+        self.logFile.write("\n{0}\n{1}\n{2}\n{3}\n".format(str(self.currentTime),             # 0
+                                                               self.titleFinal,               # 1
+                                                               str(self.price),               # 2
+                                                               str(self.formattedPercent)))   # 3
         self.logFile.close()
         os.system("sudo cp -rf /home/pi/Documents/amazonScraper/logFile.txt /home/pi/")
     
