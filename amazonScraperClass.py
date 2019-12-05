@@ -14,7 +14,6 @@ import os
 from bs4 import BeautifulSoup
 import requests
 
-
 class amazonScraper():
     def __init__(self):
         self.URL = 'https://www.amazon.ca/gp/product/B07RS512XL?pf_rd_p=46535598-d2e0-4bc4-8392-182d8c1e93fc&pf_rd_r=YDTVGVF57RWYKZKQDVNA'
@@ -67,14 +66,15 @@ class amazonScraper():
                                             "value2":self.price,
                                             "value3":str(self.formattedPercent)})
                 self.comparePrice = self.floatPrice
-                success = 1
+                self.success = 1
                 self.saveToFile(success)
             except Exception as e:
+                self.success = 0
                 print("\nError occured at {0}: {1}\n".format(str(self.current),str(e)))
                 self.errorLog.write("\n" + str(self.current) + ": " + str(e)+ "\n")
                 
     def saveToFile(self):
-        if value = 1:
+        if self.success = 1:
             print("Gather Successful. Saved to log file.")
             self.logFile.write("\nGather success {0}:\nProduct Name: {1}\nCurrent Price: {2}\nPercent Off: {3}\n".format(str(currentTime),titleFinal,str(price),str(formattedPercent)))
             self.logFile.close()
