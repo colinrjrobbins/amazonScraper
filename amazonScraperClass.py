@@ -26,7 +26,7 @@ class amazonScraper():
         
     def timeCheck(self):
         print("Waiting...")
-        time.sleep(10)
+        time.sleep(900)
         
     def pageGather(self):
         self.page = requests.get(self.URL,
